@@ -12,14 +12,41 @@ class Vcast extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: PlayBackButton(),
+      ),
+    );
+  }
+}
+
+class PlayBackButton extends StatefulWidget {
+  @override
+  _PlayBackButtonState createState() => _PlayBackButtonState();
+}
+
+class _PlayBackButtonState extends State<PlayBackButton> {
+  bool _isPlaying = false;
+
+  void _stop() {}
+
+  void _play() {}
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: _isPlaying ? Icon(Icons.stop) : Icon(Icons.play_arrow),
+      onPressed: () {
+        if (_isPlaying) {
+          _stop();
+        } else {
+          _play();
+        }
+        setState(() => _isPlaying = !_isPlaying);
+      },
+    );
   }
 }
