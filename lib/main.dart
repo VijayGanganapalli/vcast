@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 
 void main() => runApp(Vcast());
 
@@ -29,11 +30,24 @@ class PlayBackButton extends StatefulWidget {
 }
 
 class _PlayBackButtonState extends State<PlayBackButton> {
+  String url =
+      'http://icdn7.downloadezy.live/2019/Majili/320/01%20-%20One%20Boy%20One%20Girl.mp3';
+  FlutterSound _sound;
   bool _isPlaying = false;
 
-  void _stop() {}
+  void _stop() async {
+    await _sound.stopPlayer();
+  }
 
-  void _play() {}
+  void _play() async {
+    await _sound.startPlayer(url);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _sound = FlutterSound();
+  }
 
   @override
   Widget build(BuildContext context) {
